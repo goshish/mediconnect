@@ -29,18 +29,19 @@
                 </div>
                 <div class="text__right">
                     <style>
-                        .text__right {
-                            position: absolute;
-                            top: 320px;
-                            margin-left: 310px;
-                            font-family: "Inter";
-                            font-size: 14px;
-                            font-weight: 400;
-                            color: #000000;
-                        }
+                .text__right {
+                    position: absolute;
+                    top: 320px;
+                    margin-left: 310px;
+                    font-family: "Inter";
+                    font-size: 14px;
+                    font-weight: 400;
+                    color: #000000;
+                }
+
                     </style>
                     <div class="name__doctor">
-                        <strong>{{ appointment.doctor }}</strong> 
+                        <strong>{{ appointment.doctor }}</strong>
                     </div>
                     <div class="doctor__specialization">
                         ({{ appointment.doctor.specialization }})
@@ -52,11 +53,12 @@
             </li>
             <div class="cart_item-content">
                 <style>
-                    .cart_item-content button {
-                        position: absolute;
-                        top: 400px;
-                        margin-left: 310px;
-                    }
+            .cart_item-content button {
+                position: absolute;
+                top: 400px;
+                margin-left: 310px;
+            }
+
                 </style>
                 <form action="{% url 'Cancel' appointment.id %}" method="POST">
                     {% csrf_token %}
@@ -64,8 +66,12 @@
                 </form>
             </div>
             {% endfor %}
+
         </ul>
     </div>
+    {% else %}
+    <p>You don't have any appointments</p>
+    <a href="{% url 'DoctorList' %}">Make an appointment</a>
     {% endif %}
     {% if is_paginated %}
     <div class="pagination">
@@ -89,15 +95,7 @@
         {% endif %}
         </span>
     </div>
-    {% else %}
-    <div class="warning__information">
-        <div class="p__warning__information">
-            <p class="p-doc">You don`t have an appointments</p>
-        </div>
-        <div class="a__warning__information">
-            <a class="a-doc" href="{% url 'DoctorList' %}">Make an appointment</a>
-        </div>
-    </div>
-    {% endif %}
+</div>
+{% endif %}
 </div>
 {% endblock %}
