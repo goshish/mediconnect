@@ -144,7 +144,7 @@ class DoctorAppointmentView(ListView):
         return DateSelectForm(self.request.GET)
 
 
-class Analytics(ListView):
+class AnalyticsView(ListView):
     template_name = 'staff/analytics.html'
     context_object_name = 'appointments'
 
@@ -190,4 +190,31 @@ class Analytics(ListView):
         else:
             context['average_callback_per_day'] = 0
 
+        return context
+
+
+class DoctorAnalyticsListView(ListView):
+    template_name = 'staff/doctor-analytics-list.html'
+    context_object_name = 'doctors'
+
+    def get_queryset(self):
+        return Doctor.objects.all()
+
+
+class DoctorAnalyticsView(ListView):
+    model = Appointment
+    template_name = 'staff/doctor-analytics.html'
+    context_object_name = 'doctor_analytics'
+
+    def get_queryset(self):
+        doctor_id = self.kwargs.get('doctor_id')
+        queryset = Appointment.objects.filter(doctor_id=doctor_id)
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['total_appointments'] = context['doctor_analytics'].count()
+        context['total_revenue'] = context['doctor_analytics'].aggregate(
+            total_price=Sum('doctor__visit_price'))['total_price'] or 0
+        context['doctors'] = Doctor.objects.all()
         return context

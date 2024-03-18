@@ -1,0 +1,12 @@
+{% extends 'staff/staff-base.html' %}
+
+
+{% block title %}Doctor analytics{% endblock %}
+
+{% block body %}
+
+  {% for doctor in doctors %}
+    <li><a href="{% url 'DoctorAnalytics' doctor_id=doctor.id %}"><img src="{{ doctor.photo.url }}" alt="doctor image" class="doctor__photo">{{ doctor.first_name }} {{ doctor.last_name }}</a></li>
+  {% endfor %}
+
+{% endblock %}

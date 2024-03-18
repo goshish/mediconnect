@@ -30,6 +30,9 @@
     </div>
     {% endfor %}
 </ul>
+{% else %}
+<p>You don`t have an appointments</p>
+<a href="{% url 'DoctorList' %}">Make an appointment</a>
 {% endif %}
 {% if is_paginated %}
 <div class="pagination">
@@ -53,8 +56,5 @@
       {% endif %}
     </span>
 </div>
-{% else %}
-<p>You don`t have an appointments</p>
-<a href="{% url 'DoctorList' %}">Make an appointment</a>
 {% endif %}
 {% endblock %}
