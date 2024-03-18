@@ -1188,7 +1188,7 @@ select[id="id_specialization"] {
     background-color: #ffffff;
     border-radius: 5px;
     border: 1px solid #ccc;
-    padding: 12px 5px;
+    padding: 14px 5px;
 }
 
 .doctor__list {
@@ -1320,7 +1320,7 @@ select[id="id_specialization"] {
     background: rgb(206, 28, 28);
 }
 
-/* ----------------------------------------------- Личный профиль */
+/* ----------------------------------------------- Личный профиль doctor */
 
 .specialization-field {
     width: 50%;
@@ -1388,4 +1388,80 @@ select[id="id_specialization"] {
     position: absolute;
     margin-top: -350px;
     margin-left: 990px;
+}
+
+/* ----------------------------------------------- Личный профиль */
+
+.doctor__records__profile {
+    margin-top: 99px;
+}
+
+.doctor__records__profile__settings {
+    background-color: #ffffff;
+    height: 200px;
+    padding: 30px 30px 30px 30px;
+    height: 346px;
+    box-sizing: border-box;
+    border: 1px solid rgb(236, 235, 235);
+    border-radius: 20px;
+    background: rgb(255, 255, 255);
+}
+
+.doctor__records__profile__settings ul {
+    list-style-type: none;
+    font-family: "Inter";
+    font-size: 14px;
+}
+
+.cart_item-content button {
+    cursor: pointer;
+    width: 106px;
+    height: 47px;
+    padding: 15px 30px 15px 30px;
+    border-radius: 10px;
+    background: rgb(243, 33, 33);
+    border: none;
+
+    color: white;
+    font-family: "Inter";
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.cart_item-content button:hover {
+    cursor: pointer;
+    width: 106px;
+    height: 47px;
+    padding: 15px 30px 15px 30px;
+    border-radius: 10px;
+    background: rgb(207, 30, 30);
+    border: none;
+    transition: 0.3s ease;
+
+    color: white;
+    font-family: "Inter";
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.doctor__specialization {
+    margin-top: 5px;
+}
+
+.doctor__data {
+    margin-top: 5px;
+}
+
+.custom-filter-field {
+    font-family: "Inter";
+    font-weight: 500;
+    font-size: 14px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 14px 5px;
+}
+
+.forms {
+    display: flex;
 }

@@ -5,56 +5,99 @@
 
 {% block body %}
 
-{% if appointments %}
-<div class="sidebar">
-    <form method="post">
-        {% csrf_token %}
-        {{ filter_form.as_p }}
-        <button type="submit">Filter</button>
-    </form>
-</div>
-
-<ul>
-    {% for appointment in appointments %}
-    <li>
-        <div class="doctor__list__img">
-            <img src="{{ appointment.doctor.photo.url }}" alt="doctor image" class="doctor__photo">
-        </div>
-        <strong>{{ appointment.doctor }}</strong> ({{ appointment.doctor.specialization }}) on {{ appointment.appointment_day }} {{ appointment.appointment_time }}<br>
-    </li>
-    <div class="cart_item-content">
-        <form action="{% url 'Cancel' appointment.id %}" method="POST">
+<div class="doctor__records__profile container">
+    {% if appointments %}
+    <div class="sidebar">
+        <form class="forms" method="post">
             {% csrf_token %}
-            <button type="submit" class="remove-btn">Cancel</button>
+            {{ filter_form.as_p }}
+            <button type="submit" class="button">
+                <span>Find</span>
+                <svg class="arr-1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+                </svg>
+            </button>
         </form>
     </div>
-    {% endfor %}
-</ul>
-{% else %}
-<p>You don`t have an appointments</p>
-<a href="{% url 'DoctorList' %}">Make an appointment</a>
-{% endif %}
-{% if is_paginated %}
-<div class="pagination">
-    <span class="step-links">
-      {% if page_obj.has_previous %}
-        <a href="?page=1">&laquo; first</a>
-        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-      {% endif %}
 
-      {% for page_num in page_obj.paginator.page_range %}
-        {% if page_obj.number == page_num %}
-          <span class="current">{{ page_num }}</span>
-        {% elif page_num > page_obj.number|add:'-5' and page_num < page_obj.number|add:'5' %}
-          <a href="?page={{ page_num }}">{{ page_num }}</a>
+    <div class="doctor__records__profile__settings">
+        <ul>
+            {% for appointment in appointments %}
+            <li>
+                <div class="doctor__list__img">
+                    <img src="{{ appointment.doctor.photo.url }}" alt="doctor image" class="doctor__photo">
+                </div>
+                <div class="text__right">
+                    <style>
+                        .text__right {
+                            position: absolute;
+                            top: 320px;
+                            margin-left: 310px;
+                            font-family: "Inter";
+                            font-size: 14px;
+                            font-weight: 400;
+                            color: #000000;
+                        }
+                    </style>
+                    <div class="name__doctor">
+                        <strong>{{ appointment.doctor }}</strong> 
+                    </div>
+                    <div class="doctor__specialization">
+                        ({{ appointment.doctor.specialization }})
+                    </div>
+                    <div class="doctor__data">
+                        {{ appointment.appointment_day }} {{ appointment.appointment_time }}
+                    </div>
+                </div>
+            </li>
+            <div class="cart_item-content">
+                <style>
+                    .cart_item-content button {
+                        position: absolute;
+                        top: 400px;
+                        margin-left: 310px;
+                    }
+                </style>
+                <form action="{% url 'Cancel' appointment.id %}" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="remove-btn">Cancel</button>
+                </form>
+            </div>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    {% if is_paginated %}
+    <div class="pagination">
+        <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
         {% endif %}
-      {% endfor %}
 
-      {% if page_obj.has_next %}
-        <a href="?page={{ page_obj.next_page_number }}">next</a>
-        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-      {% endif %}
-    </span>
+        {% for page_num in page_obj.paginator.page_range %}
+            {% if page_obj.number == page_num %}
+            <span class="current">{{ page_num }}</span>
+            {% elif page_num > page_obj.number|add:'-5' and page_num < page_obj.number|add:'5' %}
+            <a href="?page={{ page_num }}">{{ page_num }}</a>
+            {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+        </span>
+    </div>
+    {% else %}
+    <div class="warning__information">
+        <div class="p__warning__information">
+            <p class="p-doc">You don`t have an appointments</p>
+        </div>
+        <div class="a__warning__information">
+            <a class="a-doc" href="{% url 'DoctorList' %}">Make an appointment</a>
+        </div>
+    </div>
+    {% endif %}
 </div>
-{% endif %}
 {% endblock %}
