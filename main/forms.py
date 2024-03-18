@@ -64,7 +64,7 @@ class DoctorFilterForm(forms.Form):
 
 
 class AppointmentDoctorFilterForm(forms.Form):
-    doctor = forms.ModelChoiceField(queryset=Doctor.objects.none(), label='Select Doctor')
+    doctor = forms.ModelChoiceField(queryset=Doctor.objects.none(), label='', widget=forms.Select(attrs={'class': 'custom-filter-field'}))
 
     def __init__(self, *args, **kwargs):
         user = kwargs.pop('user', None)
@@ -80,5 +80,3 @@ class CallbackForm(forms.ModelForm):
         widgets = {
             'date': forms.DateInput(attrs={'type': 'date'}),
         }
-
-
