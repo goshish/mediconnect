@@ -1396,13 +1396,19 @@ select[id="id_specialization"] {
     margin-top: 99px;
 }
 
+.doctor__list__img img {
+    width: 170px;
+    height: 170px;
+}
+
 .doctor__records__profile__settings {
+    margin-top: 30px;
     background-color: #ffffff;
-    height: 200px;
     padding: 30px 30px 30px 30px;
-    height: 346px;
+    height: 230px;
+    width: 700px;
     box-sizing: border-box;
-    border: 1px solid rgb(236, 235, 235);
+    border: 1px solid rgb(214, 214, 214);
     border-radius: 20px;
     background: rgb(255, 255, 255);
 }
@@ -1464,4 +1470,16 @@ select[id="id_specialization"] {
 
 .forms {
     display: flex;
+}
+
+.name__doctor {
+    font-size: 20px;
+}
+
+.doctor__data {
+    float: right;
+}
+
+.doctor__data__time {
+    margin-top: 4px;
 }

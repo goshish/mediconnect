@@ -32,7 +32,7 @@
                         .text__right {
                             position: absolute;
                             top: 320px;
-                            margin-left: 310px;
+                            margin-left: 210px;
                             font-family: "Inter";
                             font-size: 14px;
                             font-weight: 400;
@@ -46,7 +46,20 @@
                         ({{ appointment.doctor.specialization }})
                     </div>
                     <div class="doctor__data">
-                        {{ appointment.appointment_day }} {{ appointment.appointment_time }}
+                        <style>
+                            .doctor__data {
+                                margin-left: 285px;
+                                position: absolute;
+                                top: -27px;
+                                opacity: 0.3;
+                                white-space: nowrap;
+                                display: inline-block;
+                            }
+                        </style>
+                        Data: {{ appointment.appointment_day }}
+                        <div class="doctor__data__time">
+                            Time: {{ appointment.appointment_time }}
+                        </div>
                     </div>
                 </div>
             </li>
@@ -54,8 +67,8 @@
                 <style>
                     .cart_item-content button {
                         position: absolute;
-                        top: 400px;
-                        margin-left: 310px;
+                        top: 418px;
+                        margin-left: 210px;
                     }
                 </style>
                 <form action="{% url 'Cancel' appointment.id %}" method="POST">
