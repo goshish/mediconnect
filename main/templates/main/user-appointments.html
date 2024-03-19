@@ -66,6 +66,15 @@
             {% endfor %}
         </ul>
     </div>
+    {% else %}
+    <div class="warning__information">
+        <div class="p__warning__information">
+            <p class="p-doc">You don`t have an appointments</p>
+        </div>
+        <div class="a__warning__information">
+            <a class="a-doc" href="{% url 'DoctorList' %}">Make an appointment</a>
+        </div>
+    </div>
     {% endif %}
     {% if is_paginated %}
     <div class="pagination">
@@ -89,15 +98,7 @@
         {% endif %}
         </span>
     </div>
-    {% else %}
-    <div class="warning__information">
-        <div class="p__warning__information">
-            <p class="p-doc">You don`t have an appointments</p>
-        </div>
-        <div class="a__warning__information">
-            <a class="a-doc" href="{% url 'DoctorList' %}">Make an appointment</a>
-        </div>
-    </div>
-    {% endif %}
+</div>
+{% endif %}
 </div>
 {% endblock %}

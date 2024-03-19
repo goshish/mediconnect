@@ -65,27 +65,27 @@ WSGI_APPLICATION = 'mediconnect.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-# DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.postgresql',
-#        'NAME': 'mediconnect',  # БД
-#        'USER': 'postgres',  # СуперЮзер для БД
-#        'PASSWORD': 'test',
-#        'HOST': 'localhost',
-#        'PORT': '5432',
-#    }
-# }
-
 DATABASES = {
    'default': {
        'ENGINE': 'django.db.backends.postgresql',
-       'NAME': 'django',  # БД
-       'USER': 'django_admin',  # СуперЮзер для БД
-       'PASSWORD': 'wsx3edc4',
+       'NAME': 'mediconnect',  # БД
+       'USER': 'postgres',  # СуперЮзер для БД
+       'PASSWORD': 'test',
        'HOST': 'localhost',
        'PORT': '5432',
    }
 }
+
+# DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.postgresql',
+#        'NAME': 'django',  # БД
+#        'USER': 'django_admin',  # СуперЮзер для БД
+#        'PASSWORD': 'wsx3edc4',
+#        'HOST': 'localhost',
+#        'PORT': '5432',
+#    }
+# }
 
 
 # Password validation
