@@ -5,7 +5,11 @@
 
 {% block body %}
 
-<div class="doctor__records__profile container">
+<div class="title container">
+    <h1>All doctor's appointments</h1>
+</div>
+
+<div class="doctorrecordsprofile container">
     {% if appointments %}
     <div class="sidebar">
         <form class="forms" method="post">
@@ -20,68 +24,87 @@
         </form>
     </div>
 
-    <div class="doctor__records__profile__settings">
+    {% for appointment in appointments %}
+    <div class="doctorrecordsprofile__settings">
         <ul>
-            {% for appointment in appointments %}
-                <li>
-                    <!-- Код для отображения информации о записи -->
-                    <div class="cart_item-content">
-                        <form action="{% url 'Cancel' appointment.id %}" method="POST">
-                            {% csrf_token %}
-                            <button type="submit" class="remove-btn">Cancel</button>
-                        </form>
+            <li>
+                <div class="cart_item-content">
+                    <form action="{% url 'Cancel' appointment.id %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" class="remove-btn">
+                            Cancel
+                        </button>                      
+                    </form>
+                </div>
+                <div class="doctorlistimg">
+                    <img src="{{ appointment.doctor.photo.url }}" alt="doctor image" class="doctor__photo">
+                </div>
+                <div class="text__right">
+                    <div class="name__doctor">
+                        <style>
+                            .name__doctor {
+                                font-family: "Inter";
+                                font-weight: 500;
+                                color: black;
+                                margin-left: 100px;
+                                transform: translateY(-60px);
+                            }
+                        </style>
+                        <strong>{{ appointment.doctor }}</strong> 
                     </div>
-                    <div class="doctor__list__img">
-                        <img src="{{ appointment.doctor.photo.url }}" alt="doctor image" class="doctor__photo">
+                    <div class="doctor__specialization">
+                        <style>
+                            .doctor__specialization {
+                                font-family: "Inter";
+                                font-weight: 400;
+                                color: black;
+                                margin-top: 5px;
+                                margin-left: 100px;
+                                transform: translateY(-60px);
+                            }
+                        </style>
+                        ({{ appointment.doctor.specialization }})
                     </div>
-                    <div class="text__right">
-                        <div class="name__doctor">
-                            <strong>{{ appointment.doctor }}</strong> 
-                        </div>
-                        <div class="doctor__specialization">
-                            ({{ appointment.doctor.specialization }})
-                        </div>
-                        <div class="doctor__data">
-                            Data: {{ appointment.appointment_day }}
-                            <div class="doctor__data__time">
-                                Time: {{ appointment.appointment_time }}
-                            </div>
-                        </div>
+                    <div class="title__doctor">
+                        Your appointment
                     </div>
-                </li>
-            {% endfor %}
+                    <div class="doctor__data">
+                        <style>
+                            .doctor__data {
+                                position: relative;
+                                top: 10px;
+                                margin-top: 5px;
+                                font-family: "Inter";
+                                font-weight: 400;
+                                font-size: 14px;
+                                opacity: 0.5;
+                                transform: translateY(-9px);
+                            }
+                        </style>
+                        Date: {{ appointment.appointment_day }}
+                    </div>
+                    <div class="doctor__data">
+                        Time: {{ appointment.appointment_time }}
+                    </div>
+                </div>
+            </li>
         </ul>
     </div>
-    {% endif %}
-    {% if is_paginated %}
-    <div class="pagination">
-        <span class="step-links">
-        {% if page_obj.has_previous %}
-            <a href="?page=1">&laquo; first</a>
-            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-        {% endif %}
+    {% endfor %}
 
-        {% for page_num in page_obj.paginator.page_range %}
-            {% if page_obj.number == page_num %}
-            <span class="current">{{ page_num }}</span>
-            {% elif page_num > page_obj.number|add:'-5' and page_num < page_obj.number|add:'5' %}
-            <a href="?page={{ page_num }}">{{ page_num }}</a>
-            {% endif %}
-        {% endfor %}
-
-        {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}">next</a>
-            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-        {% endif %}
-        </span>
-    </div>
     {% else %}
     <div class="warning__information">
-        <div class="p__warning__information">
-            <p class="p-doc">You don`t have an appointments</p>
-        </div>
-        <div class="a__warning__information">
-            <a class="a-doc" href="{% url 'DoctorList' %}">Make an appointment</a>
+        <div class="inner">
+            <div class="pwarninginformation">
+                <p class="p-doc">You don`t have an appointments</p>
+            </div>
+            <div class="awarninginformation">
+                <a class="a-doc" href="{% url 'DoctorList' %}">
+                    <button>
+                        Make an appointment
+                    </button>
+                </a>
+            </div>
         </div>
     </div>
     {% endif %}
