@@ -5,6 +5,8 @@
 
 {% block body %}
 
+<h1>Your appointments</h1>
+
 <div class="doctor__records__profile container">
     {% if appointments %}
     <div class="sidebar">
@@ -45,8 +47,12 @@
                     <div class="doctor__specialization">
                         ({{ appointment.doctor.specialization }})
                     </div>
+                    Your appointment
                     <div class="doctor__data">
-                        {{ appointment.appointment_day }} {{ appointment.appointment_time }}
+                        Date: {{ appointment.appointment_day }}
+                    </div>
+                    <div class="doctor__data">
+                        Time: {{ appointment.appointment_time }}
                     </div>
                 </div>
             </li>
