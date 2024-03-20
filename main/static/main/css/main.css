@@ -1417,15 +1417,26 @@ select[id="id_specialization"] {
     height: 72px;
 }
 
-.doctorrecordsprofile__settings {
-    margin-top: 30px;
-    margin-bottom: 20px;
-    width: 100%;
+/* .doctorrecordsprofile__settings {
+    margin-top: 60px;
     box-sizing: border-box;
+    width: 700px;
     padding: 30px;
     border: 1px solid rgb(213, 213, 213);
     border-radius: 20px;
     background: rgb(255, 255, 255);
+} */
+
+.doctorrecordsprofile__settings {
+    box-sizing: border-box;
+    width: calc(50% - 20px);
+    padding: 30px;
+    border: 1px solid rgb(213, 213, 213);
+    border-radius: 20px;
+    background: rgb(255, 255, 255);
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 20px;
 }
 
 .cart_item-content button.remove-btn {
