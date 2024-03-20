@@ -1295,6 +1295,7 @@ select[id="id_specialization"] {
     padding: 20px 92px 20px 92px;
     border-radius: 5px;
     border: 0;
+    font-size: 14px;
     background: rgb(240, 33, 33);
     transition: 0.3s ease all;
 }
@@ -1392,31 +1393,42 @@ select[id="id_specialization"] {
 
 /* ----------------------------------------------- Личный профиль */
 
-.doctor__records__profile {
+.title h1 {
     margin-top: 99px;
+    font-family: "Inter";
+    width: 200px;
+    font-weight: 600;
+    font-size: 35px;
+    color: #000000;
 }
 
-.doctor__list__img img {
-    width: 170px;
-    height: 170px;
+.doctorrecordsprofile__settings ul {
+    list-style-type: none;
 }
 
-.doctor__records__profile__settings {
+.doctorrecordsprofile {
     margin-top: 30px;
-    background-color: #ffffff;
-    padding: 30px 30px 30px 30px;
-    height: 230px;
-    width: 700px;
+}
+
+.doctorlistimg img {
+    /* transform: translateY(-50px); */
+    width: 72px;
+    height: 72px;
+}
+
+.doctorrecordsprofile__settings {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    width: 100%;
     box-sizing: border-box;
-    border: 1px solid rgb(214, 214, 214);
+    padding: 30px;
+    border: 1px solid rgb(213, 213, 213);
     border-radius: 20px;
     background: rgb(255, 255, 255);
 }
 
-.doctor__records__profile__settings ul {
-    list-style-type: none;
-    font-family: "Inter";
-    font-size: 14px;
+.cart_item-content button.remove-btn {
+    cursor: pointer;
 }
 
 .cart_item-content button {
@@ -1426,12 +1438,13 @@ select[id="id_specialization"] {
     padding: 15px 30px 15px 30px;
     border-radius: 10px;
     background: rgb(243, 33, 33);
-    border: none;
-
-    color: white;
+    border: 0;
+    color: rgb(255, 255, 255);
     font-family: "Inter";
-    font-weight: 500;
     font-size: 14px;
+    font-weight: 400;
+    float: right;
+    transition: 0.2 ease;
 }
 
 .cart_item-content button:hover {
@@ -1440,22 +1453,21 @@ select[id="id_specialization"] {
     height: 47px;
     padding: 15px 30px 15px 30px;
     border-radius: 10px;
-    background: rgb(207, 30, 30);
-    border: none;
-    transition: 0.3s ease;
+    background: rgb(199, 26, 26);
+    border: 0;
+    color: rgb(255, 255, 255);
+    font-family: "Inter";
+    font-size: 14px;
+    font-weight: 400;
+    float: right;
+}
 
-    color: white;
+.title__doctor {
     font-family: "Inter";
     font-weight: 500;
     font-size: 14px;
-}
-
-.doctor__specialization {
-    margin-top: 5px;
-}
-
-.doctor__data {
-    margin-top: 5px;
+    color: #000000;
+    transform: translateY(-12px);
 }
 
 .custom-filter-field {
@@ -1472,14 +1484,58 @@ select[id="id_specialization"] {
     display: flex;
 }
 
-.name__doctor {
+.warning__information {
+    width: 100%;
+    height: 240px;
+    box-sizing: border-box;
+    border: 1px solid rgb(213, 213, 213);
+    border-radius: 20px;
+    background: rgb(255, 255, 255);
+    padding: 30px 30px 30px 30px;
+    align-items: center;
+    text-align: center;
+}
+
+.inner {
+    margin-top: 50px;
+}
+
+.p-doc {
+    font-family: "Inter";
     font-size: 20px;
+    font-weight: 500;
+    color: #000000;
 }
 
-.doctor__data {
-    float: right;
+.a-doc button {
+    cursor: pointer;
+    margin-top: 20px;
+    width: 204px;
+    height: 47px;
+    border-radius: 10px;
+    background: rgb(243, 33, 33);
+    border: 0;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-family: "Inter";
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+    transition: 0.2s ease;
 }
 
-.doctor__data__time {
-    margin-top: 4px;
+.a-doc button:hover {
+    cursor: pointer;
+    margin-top: 20px;
+    width: 204px;
+    height: 47px;
+    border-radius: 10px;
+    background: rgb(192, 25, 25);
+    border: 0;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-family: "Inter";
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
 }

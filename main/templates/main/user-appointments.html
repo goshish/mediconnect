@@ -5,8 +5,6 @@
 
 {% block body %}
 
-<h1>Your appointments</h1>
-
 <div class="doctor__records__profile container">
     {% if appointments %}
     <div class="sidebar">
@@ -34,7 +32,7 @@
                         .text__right {
                             position: absolute;
                             top: 320px;
-                            margin-left: 310px;
+                            margin-left: 210px;
                             font-family: "Inter";
                             font-size: 14px;
                             font-weight: 400;
@@ -47,12 +45,21 @@
                     <div class="doctor__specialization">
                         ({{ appointment.doctor.specialization }})
                     </div>
-                    Your appointment
                     <div class="doctor__data">
-                        Date: {{ appointment.appointment_day }}
-                    </div>
-                    <div class="doctor__data">
-                        Time: {{ appointment.appointment_time }}
+                        <style>
+                            .doctor__data {
+                                margin-left: 285px;
+                                position: absolute;
+                                top: -27px;
+                                opacity: 0.3;
+                                white-space: nowrap;
+                                display: inline-block;
+                            }
+                        </style>
+                        Data: {{ appointment.appointment_day }}
+                        <div class="doctor__data__time">
+                            Time: {{ appointment.appointment_time }}
+                        </div>
                     </div>
                 </div>
             </li>
@@ -60,8 +67,8 @@
                 <style>
                     .cart_item-content button {
                         position: absolute;
-                        top: 400px;
-                        margin-left: 310px;
+                        top: 418px;
+                        margin-left: 210px;
                     }
                 </style>
                 <form action="{% url 'Cancel' appointment.id %}" method="POST">
@@ -71,15 +78,6 @@
             </div>
             {% endfor %}
         </ul>
-    </div>
-    {% else %}
-    <div class="warning__information">
-        <div class="p__warning__information">
-            <p class="p-doc">You don`t have an appointments</p>
-        </div>
-        <div class="a__warning__information">
-            <a class="a-doc" href="{% url 'DoctorList' %}">Make an appointment</a>
-        </div>
     </div>
     {% endif %}
     {% if is_paginated %}
@@ -104,7 +102,15 @@
         {% endif %}
         </span>
     </div>
-</div>
-{% endif %}
+    {% else %}
+    <div class="warning__information">
+        <div class="p__warning__information">
+            <p class="p-doc">You don`t have an appointments</p>
+        </div>
+        <div class="a__warning__information">
+            <a class="a-doc" href="{% url 'DoctorList' %}">Make an appointment</a>
+        </div>
+    </div>
+    {% endif %}
 </div>
 {% endblock %}
