@@ -1412,6 +1412,7 @@ select[id="id_specialization"] {
 
 .doctorlistimg img {
     /* transform: translateY(-50px); */
+    border-radius: 15px;
     width: 72px;
     height: 72px;
 }
