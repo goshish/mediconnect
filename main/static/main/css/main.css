@@ -1404,10 +1404,18 @@ select[id="id_specialization"] {
 .doctor__records__profile__settings {
     margin-top: 30px;
     width: 100%;
-    height: 240px;
     box-sizing: border-box;
-    padding: 30px 30px 30px 30px;
+    padding: 30px;
     border: 1px solid rgb(213, 213, 213);
     border-radius: 20px;
     background: rgb(255, 255, 255);
+}
+
+.doctor__records__profile__settings ul {
+    list-style: none;
+    padding: 0;
+}
+
+.doctor__records__profile__settings li {
+    margin-bottom: 20px; /* Горизонтальное расстояние между записями */
 }
