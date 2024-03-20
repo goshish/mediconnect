@@ -1397,89 +1397,17 @@ select[id="id_specialization"] {
 }
 
 .doctor__list__img img {
-    width: 170px;
-    height: 170px;
+    width: 72px;
+    height: 72px;
 }
 
 .doctor__records__profile__settings {
     margin-top: 30px;
-    background-color: #ffffff;
-    padding: 30px 30px 30px 30px;
-    height: 230px;
-    width: 700px;
+    width: 100%;
+    height: 240px;
     box-sizing: border-box;
-    border: 1px solid rgb(214, 214, 214);
+    padding: 30px 30px 30px 30px;
+    border: 1px solid rgb(213, 213, 213);
     border-radius: 20px;
     background: rgb(255, 255, 255);
-}
-
-.doctor__records__profile__settings ul {
-    list-style-type: none;
-    font-family: "Inter";
-    font-size: 14px;
-}
-
-.cart_item-content button {
-    cursor: pointer;
-    width: 106px;
-    height: 47px;
-    padding: 15px 30px 15px 30px;
-    border-radius: 10px;
-    background: rgb(243, 33, 33);
-    border: none;
-
-    color: white;
-    font-family: "Inter";
-    font-weight: 500;
-    font-size: 14px;
-}
-
-.cart_item-content button:hover {
-    cursor: pointer;
-    width: 106px;
-    height: 47px;
-    padding: 15px 30px 15px 30px;
-    border-radius: 10px;
-    background: rgb(207, 30, 30);
-    border: none;
-    transition: 0.3s ease;
-
-    color: white;
-    font-family: "Inter";
-    font-weight: 500;
-    font-size: 14px;
-}
-
-.doctor__specialization {
-    margin-top: 5px;
-}
-
-.doctor__data {
-    margin-top: 5px;
-}
-
-.custom-filter-field {
-    font-family: "Inter";
-    font-weight: 500;
-    font-size: 14px;
-    background-color: #ffffff;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    padding: 14px 5px;
-}
-
-.forms {
-    display: flex;
-}
-
-.name__doctor {
-    font-size: 20px;
-}
-
-.doctor__data {
-    float: right;
-}
-
-.doctor__data__time {
-    margin-top: 4px;
 }

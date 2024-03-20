@@ -23,59 +23,32 @@
     <div class="doctor__records__profile__settings">
         <ul>
             {% for appointment in appointments %}
-            <li>
-                <div class="doctor__list__img">
-                    <img src="{{ appointment.doctor.photo.url }}" alt="doctor image" class="doctor__photo">
-                </div>
-                <div class="text__right">
-                    <style>
-                        .text__right {
-                            position: absolute;
-                            top: 320px;
-                            margin-left: 210px;
-                            font-family: "Inter";
-                            font-size: 14px;
-                            font-weight: 400;
-                            color: #000000;
-                        }
-                    </style>
-                    <div class="name__doctor">
-                        <strong>{{ appointment.doctor }}</strong> 
+                <li>
+                    <!-- Код для отображения информации о записи -->
+                    <div class="cart_item-content">
+                        <form action="{% url 'Cancel' appointment.id %}" method="POST">
+                            {% csrf_token %}
+                            <button type="submit" class="remove-btn">Cancel</button>
+                        </form>
                     </div>
-                    <div class="doctor__specialization">
-                        ({{ appointment.doctor.specialization }})
+                    <div class="doctor__list__img">
+                        <img src="{{ appointment.doctor.photo.url }}" alt="doctor image" class="doctor__photo">
                     </div>
-                    <div class="doctor__data">
-                        <style>
-                            .doctor__data {
-                                margin-left: 285px;
-                                position: absolute;
-                                top: -27px;
-                                opacity: 0.3;
-                                white-space: nowrap;
-                                display: inline-block;
-                            }
-                        </style>
-                        Data: {{ appointment.appointment_day }}
-                        <div class="doctor__data__time">
-                            Time: {{ appointment.appointment_time }}
+                    <div class="text__right">
+                        <div class="name__doctor">
+                            <strong>{{ appointment.doctor }}</strong> 
+                        </div>
+                        <div class="doctor__specialization">
+                            ({{ appointment.doctor.specialization }})
+                        </div>
+                        <div class="doctor__data">
+                            Data: {{ appointment.appointment_day }}
+                            <div class="doctor__data__time">
+                                Time: {{ appointment.appointment_time }}
+                            </div>
                         </div>
                     </div>
-                </div>
-            </li>
-            <div class="cart_item-content">
-                <style>
-                    .cart_item-content button {
-                        position: absolute;
-                        top: 418px;
-                        margin-left: 210px;
-                    }
-                </style>
-                <form action="{% url 'Cancel' appointment.id %}" method="POST">
-                    {% csrf_token %}
-                    <button type="submit" class="remove-btn">Cancel</button>
-                </form>
-            </div>
+                </li>
             {% endfor %}
         </ul>
     </div>
