@@ -1428,6 +1428,7 @@ select[id="id_specialization"] {
 } */
 
 .doctorrecordsprofile__settings {
+    margin-top: 20px;
     box-sizing: border-box;
     width: calc(50% - 20px);
     padding: 30px;
@@ -1436,7 +1437,6 @@ select[id="id_specialization"] {
     background: rgb(255, 255, 255);
     float: left;
     margin-right: 20px;
-    margin-bottom: 20px;
 }
 
 .cart_item-content button.remove-btn {
