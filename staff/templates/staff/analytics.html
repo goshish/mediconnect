@@ -8,8 +8,12 @@
 <a href="{% url 'DoctorAnalyticsList' %}"> Doctors reports |</a>
 
 <p>Total number of appointments: {{ total_appointments }}</p>
-<p>Total revenues: {{ total_revenue_all }}$</p>
 <p>Average appointments per day: {{ average_appointments_per_day }}</p>
+<p>Total appointments this month: {{ total_appointments_this_month }}</p>
+<p>Total revenues: {{ total_revenue_all }}$</p>
 <p>Average revenues per day: {{ average_revenue_per_day }}$</p>
+<p>Total revenues this month: {{ total_revenue_this_month }}$</p>
+<p>Total number of callbacks: {{ total_callbacks }}</p>
 <p>Average callbacks per day: {{ average_callback_per_day }}</p>
+<p>Total callbacks this month: {{ total_callbacks_this_month }}</p>
 {% endblock %}

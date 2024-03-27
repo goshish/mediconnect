@@ -158,6 +158,7 @@ class AnalyticsView(ListView):
         context['total_revenue_all'] = Appointment.objects.filter().aggregate(
             total_price=Sum('doctor__visit_price'))['total_price'] or 0
         context['doctors'] = Doctor.objects.all()
+
         appointments_per_day = Appointment.objects.annotate(day=TruncDay('appointment_day')).values('day').annotate(
             count=Count('id')).order_by()
         total_apppointment_days = appointments_per_day.count()
@@ -165,7 +166,6 @@ class AnalyticsView(ListView):
         if total_apppointment_days > 0:
             average = total_appointments / total_apppointment_days
             context['average_appointments_per_day'] = round(average, 1)
-
         else:
             context['average_appointments_per_day'] = 0
 
@@ -190,6 +190,27 @@ class AnalyticsView(ListView):
         else:
             context['average_callback_per_day'] = 0
 
+        now = datetime.now()
+        current_month = now.month
+        current_year = now.year
+        start_of_month = datetime(current_year, current_month, 1)
+        end_of_month = datetime(current_year if current_month < 12 else current_year + 1, current_month % 12 + 1, 1)
+
+        total_revenue_this_month = Appointment.objects.filter(
+            appointment_day__range=[start_of_month, end_of_month]
+        ).aggregate(total_price=Sum('doctor__visit_price'))['total_price'] or 0
+        context['total_revenue_this_month'] = total_revenue_this_month
+
+        total_appointments_this_month = Appointment.objects.filter(
+            appointment_day__range=[start_of_month, end_of_month]
+        ).count()
+        context['total_appointments_this_month'] = total_appointments_this_month
+
+        total_callbacks_this_month = Callback.objects.filter(
+            date__range=[start_of_month, end_of_month]
+        ).count()
+        context['total_callbacks_this_month'] = total_callbacks_this_month
+
         return context
 
 
@@ -208,13 +229,52 @@ class DoctorAnalyticsView(ListView):
 
     def get_queryset(self):
         doctor_id = self.kwargs.get('doctor_id')
-        queryset = Appointment.objects.filter(doctor_id=doctor_id)
-        return queryset
+        return Appointment.objects.filter(doctor__id=doctor_id)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['total_appointments'] = context['doctor_analytics'].count()
-        context['total_revenue'] = context['doctor_analytics'].aggregate(
+        doctor_id = self.kwargs.get('doctor_id')
+        context['total_appointments'] = Appointment.objects.filter(doctor__id=doctor_id).count()
+        context['total_revenue_all'] = Appointment.objects.filter(doctor__id=doctor_id).aggregate(
             total_price=Sum('doctor__visit_price'))['total_price'] or 0
         context['doctors'] = Doctor.objects.all()
+
+        appointments_per_day = Appointment.objects.filter(doctor__id=doctor_id).annotate(day=TruncDay('appointment_day')).values('day').annotate(
+            count=Count('id')).order_by()
+        total_apppointment_days = appointments_per_day.count()
+        total_appointments = context['total_appointments']
+        if total_apppointment_days > 0:
+            average = total_appointments / total_apppointment_days
+            context['average_appointments_per_day'] = round(average, 1)
+        else:
+            context['average_appointments_per_day'] = 0
+
+        revenue_per_day = Appointment.objects.filter(doctor__id=doctor_id).annotate(day=TruncDay('appointment_day')).values('day').annotate(
+            daily_revenue=Sum('doctor__visit_price')).order_by()
+        total_revenue_days = revenue_per_day.count()
+        total_revenue = sum(item['daily_revenue'] for item in revenue_per_day if item['daily_revenue'])
+
+        if total_revenue_days > 0:
+            average_revenue = total_revenue / total_revenue_days
+            context['average_revenue_per_day'] = round(average_revenue, 1)
+        else:
+            context['average_revenue_per_day'] = 0
+
+        now = datetime.now()
+        current_month = now.month
+        current_year = now.year
+        start_of_month = datetime(current_year, current_month, 1)
+        end_of_month = datetime(current_year if current_month < 12 else current_year + 1, current_month % 12 + 1, 1)
+
+        total_revenue_this_month = Appointment.objects.filter(
+            doctor__id=doctor_id,
+            appointment_day__range=[start_of_month, end_of_month]
+        ).aggregate(total_price=Sum('doctor__visit_price'))['total_price'] or 0
+        context['total_revenue_this_month'] = total_revenue_this_month
+
+        total_appointments_this_month = Appointment.objects.filter(
+            doctor__id=doctor_id,
+            appointment_day__range=[start_of_month, end_of_month]
+        ).count()
+        context['total_appointments_this_month'] = total_appointments_this_month
         return context

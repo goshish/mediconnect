@@ -5,6 +5,9 @@
 
 {% block body %}
 
+<a href="#">| Monthly reports |</a>
+<a href="{% url 'DoctorAnalyticsList' %}"> Doctors reports |</a>
+
   {% for doctor in doctors %}
     <li><a href="{% url 'DoctorAnalytics' doctor_id=doctor.id %}"><img src="{{ doctor.photo.url }}" alt="doctor image" class="doctor__photo">{{ doctor.first_name }} {{ doctor.last_name }}</a></li>
   {% endfor %}

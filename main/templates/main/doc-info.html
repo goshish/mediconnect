@@ -20,6 +20,7 @@
         </div>
        <form method="post" action="{% url 'DocInfo' doctor_id=doctor.id %}">
         <div class="formis">
+            {% if user.is_authenticated %}
             <div class="formis__text">
                 Make an <br> 
                 appointment
@@ -109,6 +110,12 @@
                 <button type="submit">Submit</button>
             </div>
             </div>
+            {% else %}
+           <div class="formis__text">
+               Login <br>
+               to make an appointment
+            </div>
+           {%  endif %}
         </div>
     </form>
     </div>

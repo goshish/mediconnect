@@ -5,8 +5,20 @@
 
 {% block body %}
 
-<p>Total appointments: {{ total_appointments }}</p>
-<p>Total revennue: {{ total_revenue }}$</p>
 
+<a href="#">| Monthly reports |</a>
+<a href="{% url 'DoctorAnalyticsList' %}"> Doctors reports |</a>
+
+<h1>{{ doctor_analytics.0.doctor }}</h1>
+
+<!--Первый столбик-->
+<p>Total number of appointments: {{ total_appointments }}</p>
+<p>Average appointments per day: {{ average_appointments_per_day }}</p>
+<p>Total appointments this month: {{ total_appointments_this_month }}</p>
+
+<!--Второй столбик-->
+<p>Total revenues: {{ total_revenue_all }}$</p>
+<p>Average revenues per day: {{ average_revenue_per_day }}$</p>
+<p>Total revenues this month: {{ total_revenue_this_month }}$</p>
 
 {% endblock %}
