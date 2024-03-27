@@ -1,0 +1,13 @@
+{% extends 'staff/staff-base.html' %}
+
+{% block tittle %}Monthly analytics{% endblock %}
+
+{% block body %}
+
+<ul>
+{% for month in months %}
+    <li><a href="{% url 'month_analytics' month|date:'m' %}">{{ month|date:"F Y" }}</a></li>
+{% endfor %}
+</ul>
+
+{% endblock %}

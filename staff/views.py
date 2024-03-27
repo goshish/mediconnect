@@ -1,7 +1,8 @@
 from django.db.models.functions import TruncDay
 from django.shortcuts import render, HttpResponseRedirect, get_object_or_404
+from django.utils.dateparse import parse_date
 from django.views import View
-from django.views.generic import ListView
+from django.views.generic import ListView, TemplateView
 from main.models import Appointment, Callback
 from django.db.models import Sum, Count
 from .forms import DateSelectForm
@@ -277,4 +278,21 @@ class DoctorAnalyticsView(ListView):
             appointment_day__range=[start_of_month, end_of_month]
         ).count()
         context['total_appointments_this_month'] = total_appointments_this_month
+        return context
+
+
+class MonthListView(ListView):
+    template_name = 'staff/month_list.html'
+    queryset = Appointment.objects.dates('appointment_day', 'month')
+    context_object_name = 'months'
+
+
+class MonthAnalyticsView(TemplateView):
+    template_name = 'staff/month_analytics.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        month_number = int(self.kwargs['month'])
+        month_date = datetime(datetime.now().year, month_number, 1)
+        context['month'] = month_date
         return context

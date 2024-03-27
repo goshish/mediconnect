@@ -4,7 +4,7 @@
 
 {% block body %}
 
-<a href="#">| Monthly reports |</a>
+<a href="{% url 'MonthlyList' %}">| Monthly reports |</a>
 <a href="{% url 'DoctorAnalyticsList' %}"> Doctors reports |</a>
 
 <p>Total number of appointments: {{ total_appointments }}</p>
